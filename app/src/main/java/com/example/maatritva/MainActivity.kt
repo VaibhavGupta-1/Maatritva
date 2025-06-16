@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.theme.MaatritvaTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,14 +16,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaatritvaTheme {
 
-                Home()
+                PregnancyTrackerApp()
                 }
             }
         }
     }
 
-@Composable
-fun Home(modifier: Modifier = Modifier) {
-    print("Hello")
 
-}

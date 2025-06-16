@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.maatritva.ui.homescreen.HomeScreen
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.theme.MaatritvaTheme
 
@@ -15,8 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MaatritvaTheme {
-
-                PregnancyTrackerApp()
+                HomeScreen()
+//                PregnancyTrackerApp()
                 }
             }
         }

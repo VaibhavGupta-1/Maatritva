@@ -1,5 +1,7 @@
 package com.example.maatritva
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -10,7 +12,9 @@ import com.example.maatritva.ui.Auth.HomePage
 import com.example.maatritva.ui.Auth.LoginPage
 import com.example.maatritva.ui.Auth.SignupPage
 import com.example.maatritva.ui.pregscreen.HomeScreen
+import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel) {
     val navController = rememberNavController()
@@ -25,8 +29,11 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("home"){
             HomePage(modifier,navController,authViewModel)
         }
-        composable("home1"){
+        composable("h"){
             HomeScreen(navController)
+        }
+        composable("home1"){
+            PregnancyTrackerApp()
         }
     })
 }

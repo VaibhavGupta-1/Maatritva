@@ -62,9 +62,8 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended")
 
-    val roomVersion = "2.6.1" // latest stable as of 2025
+    val roomVersion = "2.6.1" 
 
-    // Room components
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
 

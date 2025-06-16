@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.maatritva.ui.Auth.AuthViewModel
-import com.example.maatritva.ui.Auth.MyAppNavigation
 import com.example.maatritva.ui.theme.MaatritvaTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +24,7 @@ class MainActivity : ComponentActivity() {
             MaatritvaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MyAppNavigation(modifier =  Modifier.padding(innerPadding), authViewModel = authViewModel)
+
                 }
 //                PregnancyTrackerApp()
                 }

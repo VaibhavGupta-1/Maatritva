@@ -27,7 +27,6 @@ import com.example.maatritva.ui.theme.MaatritvaTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

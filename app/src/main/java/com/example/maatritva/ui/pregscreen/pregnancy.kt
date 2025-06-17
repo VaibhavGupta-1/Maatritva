@@ -80,7 +80,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PregnancyTrackerApp() {
     val navController = rememberNavController()
@@ -119,7 +118,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 icon = { Icon(icon, contentDescription = route) },
                 selected = currentRoute == route,
                 onClick = { navController.navigate(route) },
-                label = { Text(route.replace("_", " ").capitalize()) }
+                label = { Text(route.replace("_", " ")) }
             )
         }
     }
@@ -166,7 +165,6 @@ fun DashboardCard(title: String, subtitle: String, icon: ImageVector, onClick: (
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DueDateCalculatorScreen() {
     var lmpDate by remember { mutableStateOf("") }

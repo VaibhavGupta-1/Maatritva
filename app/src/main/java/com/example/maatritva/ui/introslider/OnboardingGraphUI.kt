@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -30,13 +31,14 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
             painter = painterResource(id = onboardingModel.image),
             contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth()
+                .size(1000.dp)
+                .fillMaxSize()
                 .padding(40.dp, 0.dp),
             alignment = Alignment.Center
         )
 
         Spacer(
-            modifier = Modifier.size(50.dp)
+            modifier = Modifier.size(30.dp)
         )
 
         Text(
@@ -69,8 +71,9 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
                 .fillMaxWidth()
                 .size(60.dp)
         )
-
     }
-
-
 }
+
+
+
+

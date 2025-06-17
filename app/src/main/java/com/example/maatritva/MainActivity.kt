@@ -15,9 +15,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+
+import com.example.maatritva.ui.homescreen.HomeScreen
+import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
+
 import com.example.maatritva.ui.Auth.AuthViewModel
 import com.example.maatritva.ui.introslider.OnboardingScreen
 import com.example.maatritva.ui.introslider.OnboardingUtils
+
 import com.example.maatritva.ui.theme.MaatritvaTheme
 import kotlinx.coroutines.launch
 
@@ -31,6 +36,7 @@ class MainActivity : ComponentActivity() {
         val authViewModel : AuthViewModel by viewModels()
         setContent {
             MaatritvaTheme {
+
                 Surface(color = MaterialTheme.colorScheme.background){
                     if (onboardingUtils.isOnboardingCompleted()) {
                         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

@@ -87,8 +87,18 @@ dependencies {
 
     // LiveData
     implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.9.1")
 
     // Optional ViewModel support
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1")
+
+    // OkHttp for network requests
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // JSON parsing
+    implementation("org.json:json:20231013")
+
+    implementation("com.google.ai.client.generativeai:generativeai:0.4.0")
+
+
 }

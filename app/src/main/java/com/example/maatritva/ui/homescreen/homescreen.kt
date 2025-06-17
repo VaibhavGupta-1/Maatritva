@@ -1,7 +1,8 @@
 package com.example.maatritva.ui.homescreen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.filled.ChildFriendly
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,39 +17,21 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.maatritva.ui.pregscreen.DailyTipsScreen
-import com.example.maatritva.ui.pregscreen.DueDateCalculatorScreen
-import com.example.maatritva.ui.pregscreen.HomeScreen
-import com.example.maatritva.ui.pregscreen.KickCounterScreen
-import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
-import com.example.maatritva.ui.pregscreen.SymptomTrackerScreen
-import com.example.maatritva.ui.pregscreen.WeightTrackerScreen
+import androidx.navigation.NavHostController
 
-@Preview
+
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = "home1",
-    ) {
-        composable("home1") { HomeScreen(navController) }
-        composable ("homeScreen"){  }
-    }
+fun HomeScr(navController: NavHostController) {
+
     var selectedBottomItem by remember { mutableIntStateOf(0) }
 
     Scaffold(

@@ -3,6 +3,7 @@ package com.example.maatritva.ui.pregscreen
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.room.*
+import com.example.maatritva.ui.theme.Red40
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -131,7 +133,7 @@ fun HomeScreen(navController: NavHostController) {
         .fillMaxSize()
         .padding(16.dp)) {
 
-        Text("Your Pregnancy Tracker 💖", style = MaterialTheme.typography.headlineSmall)
+        Text("Your Pregnancy Tracker 💖", style = MaterialTheme.typography.headlineSmall, )
         Spacer(Modifier.height(16.dp))
 
         DashboardCard("Due Date Calculator", "Check your expected delivery date", Icons.Default.DateRange) {

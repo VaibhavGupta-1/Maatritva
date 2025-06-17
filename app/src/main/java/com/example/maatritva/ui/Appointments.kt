@@ -1,3 +1,5 @@
+package com.example.maatritva.ui
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,17 +23,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 val LightPink = Color(0xFFFFF8F8)
-val MediumPink = Color(0xFFFFD9E0)
 val DarkPink = Color(0xFFE91E63)
-val LightBlue = Color(0xFFE6F0FF)
-val White = Color(0xFFFFFFFF)
 
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppointmentScreen() {
+fun AppointmentScreen(navController: NavHostController) {
     val scrollState = rememberScrollState()
     var searchQuery by remember { mutableStateOf("") }
 
@@ -51,7 +52,9 @@ fun AppointmentScreen() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
-                onClick = { /* Navigate back */ },
+                onClick = {
+                    navController.navigate("home src")
+                },
                 modifier = Modifier
                     .background(White, CircleShape)
                     .size(40.dp)
@@ -283,13 +286,13 @@ fun QuickActionButton(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color.White,
+            tint = White,
             modifier = Modifier.size(16.dp)
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = text,
-            color = Color.White,
+            color = White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium
         )
@@ -459,7 +462,7 @@ fun AppointmentCard(
                         Icon(
                             imageVector = Icons.Default.Call,
                             contentDescription = "Call",
-                            tint = Color.White,
+                            tint = White,
                             modifier = Modifier.size(18.dp)
                         )
                     }
@@ -475,7 +478,7 @@ fun AppointmentCard(
                         Icon(
                             imageVector = Icons.Default.Message,
                             contentDescription = "Message",
-                            tint = Color.White,
+                            tint = White,
                             modifier = Modifier.size(18.dp)
                         )
                     }

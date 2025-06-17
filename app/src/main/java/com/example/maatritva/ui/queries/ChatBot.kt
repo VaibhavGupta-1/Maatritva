@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,12 +33,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.maatritva.ui.theme.ColorUserMessage
-import com.example.maatritva.ui.theme.ColorModelMessage
-import com.example.maatritva.ui.theme.LightYellow
 import com.example.maatritva.ui.theme.Red40
 
 @Composable
-fun ChatBot(modifier: Modifier = Modifier,viewModel: ChatViewModel) {
+fun ChatBot(modifier: Modifier = Modifier, viewModel: ChatViewModel) {
     Column(
         modifier = modifier
     ) {

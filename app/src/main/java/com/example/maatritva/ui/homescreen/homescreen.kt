@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -77,7 +76,7 @@ fun HomeScr(navController: NavHostController) {
                     backgroundColor = Color(0xFFE3F2FD),
                     iconColor = Color(0xFF1976D2),
                     modifier = Modifier.weight(1f),
-                    onClick = { "PregnancyTrackerApp" }
+                    onClick = { navController.navigate("Pregnancy screen") }
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 FeatureCard(
@@ -95,7 +94,7 @@ fun HomeScr(navController: NavHostController) {
                     backgroundColor = Color(0xFFE3F2FD),
                     iconColor = Color(0xFF1976D2),
                     modifier = Modifier.weight(1f),
-                    onClick = { /* Navigate to Appointments */ }
+                    onClick = { navController.navigate("Appointment Screen") }
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 FeatureCard(
@@ -104,7 +103,7 @@ fun HomeScr(navController: NavHostController) {
                     backgroundColor = Color(0xFFE3F2FD),
                     iconColor = Color(0xFF1976D2),
                     modifier = Modifier.weight(1f),
-                    onClick = { /* Navigate to Queries */ }
+                    onClick = { navController.navigate("Query Page") }
                 )
             }
 

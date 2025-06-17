@@ -10,9 +10,9 @@ sealed class OnboardingModel(
 ) {
 
     data object FirstPage : OnboardingModel(
-        image = R.drawable.logo,
-        title = "Your Reading Partner",
-        description = "Read as many book as you want, anywhere you want"
+        image = R.drawable.ma,
+        title = "Maatritva",
+        description = ""
     )
 
     data object SecondPage : OnboardingModel(

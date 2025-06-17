@@ -32,8 +32,13 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("h"){
             HomeScreen(navController)
         }
-        composable("home1"){
+        composable("homescreen"){
             PregnancyTrackerApp()
+        }
+        composable("home1"){
+            HomeScreen(
+                navController = navController
+            )
         }
     })
 }

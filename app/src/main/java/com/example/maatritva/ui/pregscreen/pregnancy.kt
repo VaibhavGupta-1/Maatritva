@@ -90,10 +90,10 @@ fun PregnancyTrackerApp() {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "home1",
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable("home") { HomeScreen(navController) }
+            composable("home1") { HomeScreen(navController) }
             composable("due_date") { DueDateCalculatorScreen() }
             composable("tips") { DailyTipsScreen() }
             composable("kick_counter") { KickCounterScreen() }
@@ -106,7 +106,7 @@ fun PregnancyTrackerApp() {
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val items = listOf(
-        "home" to Icons.Default.Home,
+        "home1" to Icons.Default.Home,
         "kick_counter" to Icons.Default.TouchApp,
         "weight_tracker" to Icons.Default.MonitorWeight,
     )
@@ -212,7 +212,7 @@ fun DailyTipsScreen() {
 fun KickCounterScreen() {
     val context = LocalContext.current
     val db = remember { AppDatabase.getDatabase(context) }
-    var kicks by remember { mutableStateOf(0) }
+    var kicks by remember { mutableIntStateOf(0) }
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(true) {

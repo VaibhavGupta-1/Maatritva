@@ -662,6 +662,8 @@ fun getWeeklyDevelopmentData(): List<WeeklyDevelopmentData> {
             title = "Week 40: Baby's Development",
             description = "Your baby is the size of a watermelon",
             imageRes = 0
+            
         )
     )
 }
+

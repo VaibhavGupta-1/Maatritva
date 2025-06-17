@@ -9,13 +9,23 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.maatritva.ui.AppointmentCard
 import com.example.maatritva.ui.AppointmentScreen
 import com.example.maatritva.ui.Auth.AuthViewModel
 import com.example.maatritva.ui.Auth.HomePage
 import com.example.maatritva.ui.Auth.LoginPage
 import com.example.maatritva.ui.Auth.SignupPage
 import com.example.maatritva.ui.homescreen.HomeScr
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week1Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week2Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week3Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week4Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week5Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week6Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week7Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week8Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week9Screen
+import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week10Screen
+
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.queries.ChatBot
 import com.example.maatritva.ui.queries.ChatViewModel
@@ -57,7 +67,16 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
                 viewModel = chatViewModel
             )
         }
-
+        composable("week1") { Week1Screen() }
+        composable("week2") { Week2Screen() }
+        composable("week3") { Week3Screen() }
+        composable("week4") { Week4Screen() }
+        composable("week5") { Week5Screen() }
+        composable("week6") { Week6Screen() }
+        composable("week7") { Week7Screen() }
+        composable("week8") { Week8Screen() }
+        composable("week9") { Week9Screen() }
+        composable("week10") { Week10Screen() }
 
 
 

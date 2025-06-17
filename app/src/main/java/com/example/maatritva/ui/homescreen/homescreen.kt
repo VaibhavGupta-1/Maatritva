@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.maatritva.ui.theme.Red40
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -49,46 +50,42 @@ fun HomeScr(navController: NavHostController) {
                 .background(Color(0xFFF5F5F5))
                 .verticalScroll(scrollState)
                 .padding(paddingValues)
-                .padding(horizontal = 16.dp)
+//                .padding(horizontal = 16.dp)
         ) {
-            // Status Bar Space
-            Spacer(modifier = Modifier.height(24.dp))
 
-            // Welcome Header
-            Text(
-                text = "Welcome, Mom!",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
+            AppHeader()
+            Spacer(modifier = Modifier.height(18.dp))
 
             // Feature Cards Row
-            Row(
+            LazyRow (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 24.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(bottom = 24.dp)
+                    ,
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                contentPadding = PaddingValues(horizontal = 10.dp)
+
             ) {
-                FeatureCard(
-                    icon = Icons.Default.Analytics,
-                    title = "Pregnancy\nTracker",
-                    backgroundColor = Color(0xFFE3F2FD),
-                    iconColor = Color(0xFF1976D2),
-                    modifier = Modifier.weight(1f),
-                    onClick = { navController.navigate("Pregnancy screen") }
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                FeatureCard(
-                    icon = Icons.Default.Favorite,
-                    title = "Health\nTips",
-                    backgroundColor = Color(0xFFF3E5F5),
-                    iconColor = Color(0xFF9C27B0),
-                    modifier = Modifier.weight(1f),
-                    onClick = { /* Navigate to Health Tips */ }
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                FeatureCard(
+               item{ FeatureCard(
+                   icon = Icons.Default.Analytics,
+                   title = "Pregnancy\nTracker",
+                   backgroundColor = Color(0xFFE3F2FD),
+                   iconColor = Color(0xFF1976D2),
+                   modifier = Modifier.weight(1f),
+                   onClick = { navController.navigate("Pregnancy screen") }
+               )
+               }
+                item{
+                    FeatureCard(
+                        icon = Icons.Default.Favorite,
+                        title = "Health\nTips",
+                        backgroundColor = Color(0xFFF3E5F5),
+                        iconColor = Color(0xFF9C27B0),
+                        modifier = Modifier.weight(1f),
+                        onClick = { /* Navigate to Health Tips */ }
+                    )
+                }
+                item { FeatureCard(
                     icon = Icons.Default.CalendarToday,
                     title = "Appointments",
                     backgroundColor = Color(0xFFE3F2FD),
@@ -96,8 +93,8 @@ fun HomeScr(navController: NavHostController) {
                     modifier = Modifier.weight(1f),
                     onClick = { navController.navigate("Appointment Screen") }
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                FeatureCard(
+                }
+                item { FeatureCard(
                     icon = Icons.Default.Help,
                     title = "Queries",
                     backgroundColor = Color(0xFFE3F2FD),
@@ -105,21 +102,23 @@ fun HomeScr(navController: NavHostController) {
                     modifier = Modifier.weight(1f),
                     onClick = { navController.navigate("Query Page") }
                 )
+                }
             }
 
             // Weekly Development Cards - Horizontally Scrollable
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(bottom = 24.dp)
+                modifier = Modifier.padding(bottom = 24.dp).padding(horizontal = 10.dp)
             ) {
+
                 items(getWeeklyDevelopmentData()) { weekData ->
                     WeeklyDevelopmentCard(
-                        week = weekData.week,
+                        week = weekData.Month,
                         title = weekData.title,
                         description = weekData.description,
                         imageRes = weekData.imageRes,
                         onClick = {
-                            /* Navigate to week detail screen */
+                            navController.navigate(weekData.route)
                         }
                     )
                 }
@@ -144,9 +143,9 @@ fun HomeScr(navController: NavHostController) {
                 onClick = { /* Handle emergency contact */ },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
+                    .height(56.dp).padding(horizontal = 10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF2196F3)
+                    containerColor = Color(0xFFD33560)
                 ),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -174,17 +173,16 @@ fun FeatureCard(
     onClick: () -> Unit
 ) {
     Card(
-        modifier = modifier
-            .aspectRatio(1f)
+        modifier = modifier.height(85.dp)
+            .aspectRatio(1.5f)
             .clickable { onClick() },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(12.dp),
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -192,7 +190,7 @@ fun FeatureCard(
                 imageVector = icon,
                 contentDescription = null,
                 tint = iconColor,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(28.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -220,9 +218,10 @@ fun WeeklyDevelopmentCard(
             .width(280.dp)
             .height(200.dp)
             .clickable { onClick() },
+//            .padding(horizontal = 10.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -233,7 +232,7 @@ fun WeeklyDevelopmentCard(
                     .fillMaxWidth()
                     .height(120.dp)
                     .background(
-                        Color(0xFFB440C7),
+                        Color(0xFFD33560),
                         RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                     ),
                 contentAlignment = Alignment.Center
@@ -276,7 +275,9 @@ fun HealthTipsCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .padding(horizontal = 10.dp)
+        ,
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -292,7 +293,7 @@ fun HealthTipsCard(
                 modifier = Modifier
                     .size(60.dp)
                     .background(
-                        Color(0xFFBD94E0),
+                        Color(0xFFD33560),
                         RoundedCornerShape(12.dp)
                     ),
                 contentAlignment = Alignment.Center
@@ -333,7 +334,8 @@ fun UpcomingAppointmentsCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .padding(horizontal = 10.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -349,7 +351,7 @@ fun UpcomingAppointmentsCard(
                 modifier = Modifier
                     .size(60.dp)
                     .background(
-                        Color(0xFFBD94E0),
+                        Color(0xFFD33560),
                         RoundedCornerShape(12.dp)
                     ),
                 contentAlignment = Alignment.Center
@@ -396,7 +398,7 @@ fun BottomNavigationBar(
 
     NavigationBar(
         containerColor = Color.White,
-        modifier = Modifier.height(80.dp)
+        modifier = Modifier.height(90.dp)
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -410,14 +412,14 @@ fun BottomNavigationBar(
                 label = {
                     Text(
                         text = item.title,
-                        fontSize = 12.sp
+                        fontSize = 14.sp
                     )
                 },
                 selected = selectedItem == index,
                 onClick = { onItemSelected(index) },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color(0xFF2196F3),
-                    selectedTextColor = Color(0xFF2196F3),
+                    selectedIconColor = Color(0xFFD33560),
+                    selectedTextColor = Color(0xFFD33560),
                     unselectedIconColor = Color.Gray,
                     unselectedTextColor = Color.Gray,
                     indicatorColor = Color(0xFFE3F2FD)
@@ -429,10 +431,11 @@ fun BottomNavigationBar(
 
 // Data classes
 data class WeeklyDevelopmentData(
-    val week: Int,
+    val Month: Int,
     val title: String,
     val description: String,
-    val imageRes: Int
+    val imageRes: Int,
+    val route: String
 )
 
 data class BottomNavItem(
@@ -444,228 +447,93 @@ data class BottomNavItem(
 fun getWeeklyDevelopmentData(): List<WeeklyDevelopmentData> {
     return listOf(
         WeeklyDevelopmentData(
-            week = 4,
-            title = "Week 4: Baby's Development",
+            Month = 1,
+            title = "Month 0 : Baby's Development",
             description = "Your baby is the size of a poppy seed",
-            imageRes = 0
+            imageRes = 0,
+            route = "week1"
         ),
         WeeklyDevelopmentData(
-            week = 5,
-            title = "Week 5: Baby's Development",
+            Month = 2,
+            title = "Month 1: Baby's Development",
             description = "Your baby is the size of a sesame seed",
-            imageRes = 0
+            imageRes = 0,
+            route = "week2"
         ),
         WeeklyDevelopmentData(
-            week = 6,
-            title = "Week 6: Baby's Development",
+            Month = 3,
+            title = "Month 2: Baby's Development",
             description = "Your baby is the size of a lentil",
-            imageRes = 0
+            imageRes = 0,
+            route = "week3"
         ),
         WeeklyDevelopmentData(
-            week = 7,
-            title = "Week 7: Baby's Development",
+            Month = 4,
+            title = "Month 3: Baby's Development",
             description = "Your baby is the size of a blueberry",
-            imageRes = 0
+            imageRes = 0,
+            route = "week4"
         ),
         WeeklyDevelopmentData(
-            week = 8,
-            title = "Week 8: Baby's Development",
+            Month = 5,
+            title = "Month 4: Baby's Development",
             description = "Your baby is the size of a kidney bean",
-            imageRes = 0
+            imageRes = 0,
+            route = "week5"
         ),
         WeeklyDevelopmentData(
-            week = 9,
-            title = "Week 9: Baby's Development",
+            Month = 6,
+            title = "Month 5: Baby's Development",
             description = "Your baby is the size of a grape",
-            imageRes = 0
+            imageRes = 0,
+            route = "week6"
         ),
         WeeklyDevelopmentData(
-            week = 10,
-            title = "Week 10: Baby's Development",
+            Month = 7,
+            title = "Month 6: Baby's Development",
             description = "Your baby is the size of a kumquat",
-            imageRes = 0
+            imageRes = 0,
+            route = "week7"
         ),
         WeeklyDevelopmentData(
-            week = 11,
-            title = "Week 11: Baby's Development",
+            Month = 8,
+            title = "Month 7: Baby's Development",
             description = "Your baby is the size of a fig",
-            imageRes = 0
+            imageRes = 0,
+            route = "week8"
         ),
         WeeklyDevelopmentData(
-            week = 12,
-            title = "Week 12: Baby's Development",
-            description = "Your baby is the size of a lime",
-            imageRes = 0
+            Month = 9,
+            title = "Month 8: Baby's Development",
+            description = "Your baby is the size of a fig",
+            imageRes = 0,
+            route = "week9"
         ),
         WeeklyDevelopmentData(
-            week = 13,
-            title = "Week 13: Baby's Development",
-            description = "Your baby is the size of a peach",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 14,
-            title = "Week 14: Baby's Development",
-            description = "Your baby is the size of a lemon",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 15,
-            title = "Week 15: Baby's Development",
-            description = "Your baby is the size of an apple",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 16,
-            title = "Week 16: Baby's Development",
-            description = "Your baby is the size of an avocado",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 17,
-            title = "Week 17: Baby's Development",
-            description = "Your baby is the size of a turnip",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 18,
-            title = "Week 18: Baby's Development",
-            description = "Your baby is the size of a bell pepper",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 19,
-            title = "Week 19: Baby's Development",
-            description = "Your baby is the size of a tomato",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 20,
-            title = "Week 20: Baby's Development",
-            description = "Your baby is the size of a banana",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 21,
-            title = "Week 21: Baby's Development",
-            description = "Your baby is the size of a carrot",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 22,
-            title = "Week 22: Baby's Development",
-            description = "Your baby is the size of a papaya",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 23,
-            title = "Week 23: Baby's Development",
-            description = "Your baby is the size of a large mango",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 24,
-            title = "Week 24: Baby's Development",
-            description = "Your baby is the size of an ear of corn",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 25,
-            title = "Week 25: Baby's Development",
-            description = "Your baby is the size of a rutabaga",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 26,
-            title = "Week 26: Baby's Development",
-            description = "Your baby is the size of a scallion",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 27,
-            title = "Week 27: Baby's Development",
-            description = "Your baby is the size of a cauliflower",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 28,
-            title = "Week 28: Baby's Development",
-            description = "Your baby is the size of an eggplant",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 29,
-            title = "Week 29: Baby's Development",
-            description = "Your baby is the size of a butternut squash",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 30,
-            title = "Week 30: Baby's Development",
-            description = "Your baby is the size of a cabbage",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 31,
-            title = "Week 31: Baby's Development",
-            description = "Your baby is the size of a coconut",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 32,
-            title = "Week 32: Baby's Development",
-            description = "Your baby is the size of a jicama",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 33,
-            title = "Week 33: Baby's Development",
-            description = "Your baby is the size of a pineapple",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 34,
-            title = "Week 34: Baby's Development",
-            description = "Your baby is the size of a cantaloupe",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 35,
-            title = "Week 35: Baby's Development",
-            description = "Your baby is the size of a honeydew melon",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 36,
-            title = "Week 36: Baby's Development",
-            description = "Your baby is the size of a romaine lettuce",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 37,
-            title = "Week 37: Baby's Development",
-            description = "Your baby is the size of a swiss chard",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 38,
-            title = "Week 38: Baby's Development",
-            description = "Your baby is the size of a winter melon",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 39,
-            title = "Week 39: Baby's Development",
-            description = "Your baby is the size of a pumpkin",
-            imageRes = 0
-        ),
-        WeeklyDevelopmentData(
-            week = 40,
-            title = "Week 40: Baby's Development",
-            description = "Your baby is the size of a watermelon",
-            imageRes = 0
+            Month = 10,
+            title = "Month 9: Baby's Development",
+            description = "Your baby is the size of a fig",
+            imageRes = 0,
+            route = "week10"
         )
+
     )
+}
+
+@Composable
+fun AppHeader() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Red40)
+    ) {
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = "Welcome, Mom",
+            color = Color.White,
+            fontSize = 22.sp
+        )
+    }
 }
 
 

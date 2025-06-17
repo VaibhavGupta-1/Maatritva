@@ -32,6 +32,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -66,6 +67,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.9.0")
 
     implementation("androidx.compose.material:material-icons-extended")
+
+    // Core library desugaring for java.time API support on older Android versions
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
+    // ThreeTenABP for java.time API support on older Android versions
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.6")
 
     val roomVersion = "2.6.1"
 

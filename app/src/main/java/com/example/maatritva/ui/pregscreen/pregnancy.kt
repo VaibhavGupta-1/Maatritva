@@ -80,6 +80,7 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PregnancyTrackerApp() {
     val navController = rememberNavController()
@@ -89,10 +90,10 @@ fun PregnancyTrackerApp() {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = "home1",
+            startDestination = "home",
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable("home1") { HomeScreen(navController) }
+            composable("home") { HomeScreen(navController) }
             composable("due_date") { DueDateCalculatorScreen() }
             composable("tips") { DailyTipsScreen() }
             composable("kick_counter") { KickCounterScreen() }
@@ -105,7 +106,7 @@ fun PregnancyTrackerApp() {
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val items = listOf(
-        "home1" to Icons.Default.Home,
+        "home" to Icons.Default.Home,
         "kick_counter" to Icons.Default.TouchApp,
         "weight_tracker" to Icons.Default.MonitorWeight,
     )
@@ -118,7 +119,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 icon = { Icon(icon, contentDescription = route) },
                 selected = currentRoute == route,
                 onClick = { navController.navigate(route) },
-                label = { Text(route.replace("_", " ")) }
+                label = { Text(route.replace("_", " ").capitalize()) }
             )
         }
     }
@@ -165,6 +166,7 @@ fun DashboardCard(title: String, subtitle: String, icon: ImageVector, onClick: (
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DueDateCalculatorScreen() {
     var lmpDate by remember { mutableStateOf("") }
@@ -210,7 +212,7 @@ fun DailyTipsScreen() {
 fun KickCounterScreen() {
     val context = LocalContext.current
     val db = remember { AppDatabase.getDatabase(context) }
-    var kicks by remember { mutableIntStateOf(0) }
+    var kicks by remember { mutableStateOf(0) }
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(true) {

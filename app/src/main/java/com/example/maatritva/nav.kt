@@ -14,6 +14,7 @@ import com.example.maatritva.ui.Auth.SignupPage
 import com.example.maatritva.ui.pregscreen.HomeScreen
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel) {
     val navController = rememberNavController()
@@ -31,7 +32,7 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("h"){
             HomeScreen(navController)
         }
-        composable("homescreen"){
+        composable("home screen"){
             PregnancyTrackerApp()
         }
         composable("home1"){

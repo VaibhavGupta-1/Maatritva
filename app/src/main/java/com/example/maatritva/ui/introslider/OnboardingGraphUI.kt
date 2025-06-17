@@ -55,25 +55,7 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
                 .size(15.dp)
         )
 
-        Text(
-            text = onboardingModel.description,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(25.dp, 0.dp),
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
-
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(60.dp)
-        )
     }
 }
-
-
 
 

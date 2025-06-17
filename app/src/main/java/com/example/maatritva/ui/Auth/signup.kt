@@ -96,7 +96,7 @@ fun SignupPage(
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick = {
-            navController.navigate("login")
+            navController.navigate("home screen")
         }) {
             Text(text = "Already have an account, Login")
         }

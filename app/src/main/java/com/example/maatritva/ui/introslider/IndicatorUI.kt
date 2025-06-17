@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.maatritva.ui.theme.Red40
 
 @Composable
 fun IndicatorUI(
@@ -25,7 +26,8 @@ fun IndicatorUI(
 ) {
 
 
-    Row (horizontalArrangement = Arrangement.SpaceBetween) {
+    Row (modifier = Modifier.background(Red40),
+        horizontalArrangement = Arrangement.SpaceBetween ) {
         repeat(pageSize){
             Spacer(modifier = Modifier.size(2.5.dp))
 
@@ -34,7 +36,6 @@ fun IndicatorUI(
                 .width(width = if (it == currentPage) 32.dp else 14.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(color = if(it == currentPage) selectedColor else unselectedColor)
-
             )
             Spacer(modifier = Modifier.size(2.5.dp))
 

@@ -43,7 +43,7 @@ fun SignupPage(
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
-            is AuthState.Authenticated -> navController.navigate("home1")
+            is AuthState.Authenticated -> navController.navigate("home src")
             is AuthState.Error -> Toast.makeText(
                 context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT
@@ -96,7 +96,7 @@ fun SignupPage(
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick = {
-            navController.navigate("home screen")
+            navController.navigate("queries")
         }) {
             Text(text = "Already have an account, Login")
         }

@@ -12,3 +12,6 @@ val Pink40 = Color(0xFF7D5260)
 
 val Red40 = Color(0xFFD33560)
 val LightYellow = Color(0xFFFFF2CC)
+
+val ColorUserMessage = Color(0xFF4CAF50)     // Greenish
+val ColorModelMessage = Color(0xFF2196F3)    // Bluish

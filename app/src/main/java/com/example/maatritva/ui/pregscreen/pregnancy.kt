@@ -1,12 +1,18 @@
 package com.example.maatritva.ui.pregscreen
 
 import android.content.Context
+import android.graphics.Paint
+import android.graphics.Paint.Align
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -16,13 +22,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.room.*
+import com.example.maatritva.ui.theme.Red40
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -114,13 +124,21 @@ fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    NavigationBar {
+    NavigationBar(containerColor = Color.White,
+        modifier = Modifier.height(90.dp)) {
         items.forEach { (route, icon) ->
             NavigationBarItem(
                 icon = { Icon(icon, contentDescription = route) },
                 selected = currentRoute == route,
                 onClick = { navController.navigate(route) },
-                label = { Text(route.replace("_", " ").capitalize()) }
+                label = { Text(route.replace("_", " ").capitalize()) },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = Color(0xFFD33560),
+                    selectedTextColor = Color(0xFFD33560),
+                    unselectedIconColor = Color.Gray,
+                    unselectedTextColor = Color.Gray,
+                    indicatorColor = Color(0xFFE3F2FD)
+                )
             )
         }
     }
@@ -130,38 +148,47 @@ fun BottomNavigationBar(navController: NavHostController) {
 fun HomeScreen(navController: NavHostController) {
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(16.dp)) {
+        .background(Color(0xFFF5F5F5))
+        )
+    {
 
-        Text("Your Pregnancy Tracker 💖", style = MaterialTheme.typography.headlineSmall, )
+        AppHeader("Your Pregnancy Tracker",)
         Spacer(Modifier.height(16.dp))
 
-        DashboardCard("Due Date Calculator", "Check your expected delivery date", Icons.Default.DateRange) {
+        DashboardCard("Due Date Calculator", "Check your expected delivery date", Icons.Default.DateRange, onClick =  {
             navController.navigate("due_date")
-        }
-        DashboardCard("Daily Tips & Advice", "Health guidance for your week", Icons.Default.Lightbulb) {
+        },
+            backgroundColor = Color(0xFFFFFFFF))
+        DashboardCard("Daily Tips & Advice", "Health guidance for your week", Icons.Default.Lightbulb, onClick =  {
             navController.navigate("tips")
-        }
-        DashboardCard("Symptoms Tracker", "Monitor symptoms & mood", Icons.Default.Healing) {
+        },
+            backgroundColor = Color(0xFFFFFFFF))
+        DashboardCard("Symptoms Tracker", "Monitor symptoms & mood", Icons.Default.Healing, onClick =  {
             navController.navigate("symptom_tracker")
-        }
+        },
+            backgroundColor = Color(0xFFFFFFFF))
     }
 }
 
 @Composable
-fun DashboardCard(title: String, subtitle: String, icon: ImageVector, onClick: () -> Unit) {
+fun DashboardCard(title: String, subtitle: String, icon: ImageVector, onClick: () -> Unit,
+                  backgroundColor: Color) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { onClick() },
-        elevation = CardDefaults.cardElevation(8.dp)
+            .clickable { onClick() }
+            .padding(horizontal = 10.dp)
+        ,
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(containerColor = backgroundColor)
     ) {
         Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(icon, contentDescription = title, modifier = Modifier.size(40.dp))
+            Icon(icon, contentDescription = title, modifier = Modifier.size(40.dp), tint = Red40)
             Spacer(Modifier.width(16.dp))
             Column {
                 Text(title, style = MaterialTheme.typography.titleMedium)
-                Text(subtitle, style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                Text(subtitle, style = MaterialTheme.typography.bodySmall, color = Color.Black)
             }
         }
     }
@@ -222,31 +249,70 @@ fun KickCounterScreen() {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxSize().background(Color(0xFFF5F5F5))
     ) {
-        Text("Kick Counter", style = MaterialTheme.typography.headlineSmall)
-        Spacer(Modifier.height(16.dp))
-        Text("Kicks: $kicks", style = MaterialTheme.typography.titleLarge)
-        Spacer(Modifier.height(16.dp))
-        Button(onClick = {
-            coroutineScope.launch {
-                db.trackerDao().insertKick(KickEntry(count = 1))
-                kicks++
+        AppHeader("Kick Counter")
+        Spacer(Modifier.height(226.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text("Kicks: $kicks", style = MaterialTheme.typography.titleLarge,fontSize = 40.sp)
+
+            Spacer(Modifier.height(16.dp))
+
+            val addInteraction = remember { MutableInteractionSource() }
+            val resetInteraction = remember { MutableInteractionSource() }
+            val isAddPressed by addInteraction.collectIsPressedAsState()
+            val isResetPressed by resetInteraction.collectIsPressedAsState()
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Add Kick Button
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            db.trackerDao().insertKick(KickEntry(count = 1))
+                            kicks++
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isAddPressed) Color.Green else Red40,
+                        contentColor = Color.White
+                    ),
+                    interactionSource = addInteraction
+                ) {
+                    Text("Add Kick")
+                }
+
+                // Reset Button
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            db.trackerDao().clearKicks()
+                            kicks = 0
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isResetPressed) Color.Red else Red40,
+                        contentColor = Color.White
+                    ),
+                    interactionSource = resetInteraction
+                ) {
+                    Text("Reset")
+                }
             }
-        }) {
-            Text("Add Kick")
+
+
+
         }
-        Spacer(Modifier.height(8.dp))
-        Button(onClick = {
-            coroutineScope.launch {
-                db.trackerDao().clearKicks()
-                kicks = 0
-            }
-        }) {
-            Text("Reset")
-        }
+
     }
 }
 
@@ -262,47 +328,68 @@ fun WeightTrackerScreen() {
         weights = db.trackerDao().getAllWeights()
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Weight Tracker", style = MaterialTheme.typography.headlineSmall)
+    Column(Modifier.fillMaxSize().background(Color(0xFFF5F5F5))) {
+        AppHeader("Weight Tracker")
         Spacer(Modifier.height(16.dp))
-        OutlinedTextField(
+        Row(  modifier = Modifier
+            .fillMaxWidth()
+
+            ,
+            verticalAlignment = Alignment.CenterVertically,
+            ) { OutlinedTextField(
             value = weight,
             onValueChange = { weight = it },
-            label = { Text("Enter weight (kg)") }
+            label = { Text("Enter weight (kg)") }, modifier = Modifier.padding(10.dp)
         )
-        Spacer(Modifier.height(8.dp))
-        Button(onClick = {
-            if (weight.isNotBlank()) {
-                coroutineScope.launch {
-                    db.trackerDao().insertWeight(WeightEntry(weight = weight))
-                    weights = db.trackerDao().getAllWeights()
-                    weight = ""
+            Button(onClick = {
+                if (weight.isNotBlank()) {
+                    coroutineScope.launch {
+                        db.trackerDao().insertWeight(WeightEntry(weight = weight))
+                        weights = db.trackerDao().getAllWeights()
+                        weight = ""
+                    }
                 }
             }
-        }) {
-            Text("Add Entry")
+//                , modifier = Modifier.padding(top)
+            ) {
+                Text("Entry")
+            }
         }
+
         Spacer(Modifier.height(16.dp))
-        LazyColumn {
+        LazyColumn(modifier = Modifier.padding(10.dp)) {
             items(weights.size) { index ->
                 val entry = weights[index]
-                Row(
-                    Modifier.fillMaxWidth().padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 6.dp)
+                        .background(
+                            color = Color(0xFFE3F2FD),
+                            shape = RoundedCornerShape(12.dp)
+                        )
+                        .padding(horizontal = 16.dp, vertical = 12.dp)
                 ) {
-                    Text("Week ${index + 1}: ${entry.weight} kg")
-                    IconButton(onClick = {
-                        coroutineScope.launch {
-                            db.trackerDao().deleteWeight(entry)
-                            weights = db.trackerDao().getAllWeights()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("Week ${index + 1}: ${entry.weight} kg", style = MaterialTheme.typography.titleMedium)
+                        IconButton(onClick = {
+                            coroutineScope.launch {
+                                db.trackerDao().deleteWeight(entry)
+                                weights = db.trackerDao().getAllWeights()
+                            }
+                        }) {
+                            Icon(Icons.Default.Delete, contentDescription = "Delete")
                         }
-                    }) {
-                        Icon(Icons.Default.Delete, contentDescription = "Delete")
                     }
                 }
             }
         }
+
     }
 }
 
@@ -323,5 +410,27 @@ fun SymptomTrackerScreen() {
                 Text(symptom)
             }
         }
+    }
+}
+
+@Composable
+fun AppHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = Red40,
+    textColor: Color = Color.White
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(backgroundColor)
+            .padding(top = 5.dp)
+    ) {
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = text,
+            color = textColor,
+            fontSize = 22.sp
+        )
     }
 }

@@ -69,7 +69,7 @@ fun HomeScr(navController: NavHostController) {
                item{ FeatureCard(
                    icon = Icons.Default.Analytics,
                    title = "Pregnancy\nTracker",
-                   backgroundColor = Color(0xFFE3F2FD),
+                   backgroundColor = Color(0xFFFFFFFF),
                    iconColor = Color(0xFF1976D2),
                    modifier = Modifier.weight(1f),
                    onClick = { navController.navigate("Pregnancy screen") }
@@ -79,8 +79,8 @@ fun HomeScr(navController: NavHostController) {
                     FeatureCard(
                         icon = Icons.Default.Favorite,
                         title = "Health\nTips",
-                        backgroundColor = Color(0xFFF3E5F5),
-                        iconColor = Color(0xFF9C27B0),
+                        backgroundColor = Color(0xFFFFFFFF),
+                        iconColor = Color(0xFF1976D2),
                         modifier = Modifier.weight(1f),
                         onClick = { /* Navigate to Health Tips */ }
                     )
@@ -88,7 +88,7 @@ fun HomeScr(navController: NavHostController) {
                 item { FeatureCard(
                     icon = Icons.Default.CalendarToday,
                     title = "Appointments",
-                    backgroundColor = Color(0xFFE3F2FD),
+                    backgroundColor = Color(0xFFFFFFFF),
                     iconColor = Color(0xFF1976D2),
                     modifier = Modifier.weight(1f),
                     onClick = { navController.navigate("Appointment Screen") }
@@ -97,7 +97,7 @@ fun HomeScr(navController: NavHostController) {
                 item { FeatureCard(
                     icon = Icons.Default.Help,
                     title = "Queries",
-                    backgroundColor = Color(0xFFE3F2FD),
+                    backgroundColor = Color(0xFFFFFFFF),
                     iconColor = Color(0xFF1976D2),
                     modifier = Modifier.weight(1f),
                     onClick = { navController.navigate("Query Page") }
@@ -189,7 +189,7 @@ fun FeatureCard(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = iconColor,
+                tint = Red40,
                 modifier = Modifier.size(28.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))

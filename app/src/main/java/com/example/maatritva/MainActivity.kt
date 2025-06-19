@@ -38,10 +38,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MaatritvaTheme {
-//                ChatBot(
-//                    modifier= Modifier.focusModifier(),
-//                   chatViewModel
-//                )
                 Surface(color = MaterialTheme.colorScheme.background) {
                     var showSplash by remember { mutableStateOf(true) }
                     var showOnboarding by remember { mutableStateOf(!onboardingUtils.isOnboardingCompleted()) }

@@ -34,7 +34,7 @@ fun SplashScreen(
     }
 
     LaunchedEffect(key1 = true) {
-        delay(2000) // Show splash for 2 seconds
+        delay(2000) 
         onSplashFinished()
     }
 }

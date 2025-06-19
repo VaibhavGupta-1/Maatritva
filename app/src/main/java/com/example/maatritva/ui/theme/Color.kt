@@ -11,7 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Red40 = Color(0xFFD33560)
-val LightYellow = Color(0xFFFFF2CC)
+val LightYellow = Color(0xFFE0D8C8)
 
 <<<<<<< Updated upstream
 val ColorUserMessage = Color(0xFF4CAF50)     // Greenish

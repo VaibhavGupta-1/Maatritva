@@ -59,6 +59,7 @@ plugins {
         implementation(libs.androidx.credentials)
         implementation(libs.androidx.credentials.play.services.auth)
         implementation(libs.googleid)
+        implementation(libs.play.services.maps)
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
@@ -104,6 +105,15 @@ plugins {
         implementation("com.google.ai.client.generativeai:generativeai:0.4.0")
 
         implementation("io.coil-kt:coil-compose:2.7.0")
+        implementation("com.google.maps.android:maps-compose:2.11.4")
+        implementation("com.google.android.gms:play-services-location:21.0.1")
+        implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+
+        implementation("com.google.accompanist:accompanist-permissions:0.32.0") // Or the latest version
+
+        implementation ("com.google.maps.android:maps-compose:2.11.4")
+        implementation ("com.google.accompanist:accompanist-permissions:0.34.0-alpha")
+        implementation ("com.google.android.gms:play-services-location:21.0.1")
 
 
     }

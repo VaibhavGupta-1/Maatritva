@@ -1,7 +1,5 @@
 package com.example.maatritva.ui
 
-// import androidx.compose.ui.text.font.FontWeight // Not directly used in the provided Text styles
-// import androidx.compose.ui.unit.sp // Not directly used as MaterialTheme typography is used
 import android.app.Application
 import android.content.Context
 import androidx.compose.foundation.background
@@ -51,7 +49,6 @@ data class Doctor(
     val phoneNumber: String
 )
 
-// DAO
 @Dao
 interface DoctorDao {
     @Insert
@@ -67,7 +64,6 @@ interface DoctorDao {
     fun getAllDoctors(): kotlinx.coroutines.flow.Flow<List<Doctor>>
 }
 
-// Database
 @Database(entities = [Doctor::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun doctorDao(): DoctorDao
@@ -83,7 +79,6 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_database"
                 )
-                    // In a real app, you might want to add migrations or .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
@@ -92,7 +87,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-// Repository
 class DoctorRepository(private val doctorDao: DoctorDao) {
     val allDoctors: kotlinx.coroutines.flow.Flow<List<Doctor>> = doctorDao.getAllDoctors()
 
@@ -109,7 +103,6 @@ class DoctorRepository(private val doctorDao: DoctorDao) {
     }
 }
 
-// ViewModel
 class DoctorViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: DoctorRepository
     private val _doctors = MutableStateFlow<List<Doctor>>(emptyList())
@@ -139,12 +132,6 @@ class DoctorViewModel(application: Application) : AndroidViewModel(application) 
     }
 }
 
-// --- UI Components ---
-
-/**
- * The main screen composable that will be used in your actual app navigation.
- * It observes the ViewModel.
- */
 @Composable
 fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
     val doctors by doctorViewModel.doctors.collectAsState()
@@ -160,10 +147,6 @@ fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
     )
 }
 
-/**
- * This is the stateless UI content part of the screen.
- * It takes data directly, making it easy to preview and test.
- */
 @Composable
 fun EmergencyContactScreenContent(
     doctors: List<Doctor>,
@@ -281,50 +264,8 @@ fun EmergencyContactScreenContent(
                 }
             }
         }
-//        Spacer(Modifier.height(16.dp))
-//        Text(
-//            text = "Quick Actions",
-//            style = MaterialTheme.typography.titleLarge,
-//            color = Color.Black,
-//            modifier = Modifier.padding(vertical = 8.dp)
-//        )
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 8.dp),
-//            horizontalArrangement = Arrangement.SpaceEvenly
-//        ) {
-//            Button(
-//                onClick = onCallAction,
-//                colors = ButtonDefaults.buttonColors(containerColor = DarkPink),
-//                shape = RoundedCornerShape(20.dp),
-//                modifier = Modifier.weight(1f)
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Call,
-//                    contentDescription = "Call",
-//                    tint = White
-//                )
-//                Spacer(Modifier.width(8.dp))
-//                Text("Call Now", color = White)
-//            }
-//            Spacer(Modifier.width(8.dp))
-//            Button(
-//                onClick = onMessageAction,
-//                colors = ButtonDefaults.buttonColors(containerColor = LightBlue),
-//                shape = RoundedCornerShape(20.dp),
-//                modifier = Modifier.weight(1f)
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Message,
-//                    contentDescription = "Message",
-//                    tint = Color.Black
-//                )
-//                Spacer(Modifier.width(8.dp))
-//                Text("Message", color = Color.Black)
-//            }
-        }
     }
+}
 
 
 
@@ -348,13 +289,13 @@ fun EmergencyContactItem(doctor: Doctor) {
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
-                    .background(MediumPink), // Ensure MediumPink is defined
+                    .background(MediumPink),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.img), // Ensure this drawable exists (e.g. img.xml or img.png)
+                    painter = painterResource(id = R.drawable.img),
                     contentDescription = "Contact Image",
-                    tint = Color.Unspecified // Use Color.Unspecified if the drawable has its own colors
+                    tint = Color.Unspecified
                 )
             }
 
@@ -369,7 +310,7 @@ fun EmergencyContactItem(doctor: Doctor) {
                 Text(
                     text = doctor.specialty,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray // Or MaterialTheme.colorScheme.onSurfaceVariant
+                    color = Color.Gray
                 )
                 Text(
                     text = doctor.phoneNumber,
@@ -411,31 +352,3 @@ fun EmergencyContactItem(doctor: Doctor) {
     }
 }
 
-@Preview(showBackground = true, name = "Emergency Contact Screen Preview")
-@Composable
-fun PreviewEmergencyContactScreen() {
-    // It's good practice to wrap previews in your app's theme
-    // MaatritvaTheme { // Replace with your actual theme name if you have one
-    val fakeDoctors = listOf(
-        Doctor(id = 1, name = "Dr. Ada Preview", specialty = "Cardiologist", phoneNumber = "555-0101"),
-        Doctor(id = 2, name = "Dr. Grace Hopper", specialty = "Pediatrician", phoneNumber = "555-0202"),
-        Doctor(id = 3, name = "Dr. Alan Turing", specialty = "Neurologist", phoneNumber = "555-0303")
-    )
-    EmergencyContactScreenContent(
-        doctors = fakeDoctors,
-        onAddDoctor = { _, _, _ -> }, // Empty lambda for preview as actions aren't tested here
-        onCallAction = {}, // Empty lambda
-        onMessageAction = {}  // Empty lambda
-    )
-    // }
-}
-
-// If you had a theme (e.g., in ui/theme/Theme.kt) it might look like:
-// @Composable
-// fun MaatritvaTheme(content: @Composable () -> Unit) {
-//     MaterialTheme(
-//         colorScheme = /* your color scheme */,
-//         typography = /* your typography */,
-//         content = content
-//     )
-// }

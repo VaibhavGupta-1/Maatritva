@@ -224,17 +224,44 @@ fun DueDateCalculatorScreen() {
 
 @Composable
 fun DailyTipsScreen() {
-    LazyColumn(Modifier.fillMaxSize().padding(16.dp)) {
-        items(10) {
-            Card(Modifier.padding(vertical = 8.dp)) {
-                Column(Modifier.padding(16.dp)) {
-                    Text("Week ${it + 1}", style = MaterialTheme.typography.titleMedium)
-                    Text("Stay hydrated, rest well, and take prenatal vitamins.")
+    val tipsList = listOf(
+        "Stay hydrated—aim for at least 8–10 glasses of water daily.",
+        "Eat small, frequent meals to help reduce morning sickness.",
+        "Get plenty of rest – your body is doing a lot of work!",
+        "Take your prenatal vitamins daily as prescribed.",
+        "Do light exercises or walking to improve circulation.",
+        "Avoid alcohol, tobacco, caffeine, and undercooked foods.",
+        "Sleep on your left side and use pillows for comfort.",
+        "Maintain regular doctor appointments and checkups.",
+        "Talk openly about how you’re feeling emotionally.",
+        "Keep a pregnancy journal to track milestones and thoughts.",
+        "Attend all scans: NT (12 weeks), Anomaly (20 weeks), and Growth (3rd trimester).",
+        "Pack your hospital bag by week 34 and discuss your birth plan.",
+        "Eat a balanced diet rich in iron, calcium, and protein.",
+
+    )
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        items(tipsList.size) { index ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Advice #${index + 1}", style = MaterialTheme.typography.titleMedium)
+                    Text(tipsList[index])
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun KickCounterScreen() {

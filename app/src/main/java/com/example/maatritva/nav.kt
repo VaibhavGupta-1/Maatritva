@@ -1,10 +1,13 @@
 package com.example.maatritva
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -27,6 +30,8 @@ import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week9Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week10Screen
 
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
+import com.example.maatritva.ui.profile.ProfileScreen
+import com.example.maatritva.ui.profile.ProfileViewModel
 import com.example.maatritva.ui.queries.ChatBot
 import com.example.maatritva.ui.queries.ChatViewModel
 
@@ -78,11 +83,21 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("week9") { Week9Screen() }
         composable("week10") { Week10Screen() }
 
+        composable("profile") {
+            val context = LocalContext.current
+            val viewModel: ProfileViewModel = viewModel(
+                factory = ViewModelProvider.AndroidViewModelFactory.getInstance(context.applicationContext as Application)
+            )
+            ProfileScreen(viewModel = viewModel,navController)
+        }
+
 
 
     }
     )
 }
+
+
 
 
 

@@ -26,11 +26,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
-<<<<<<< Updated upstream
 val LightPink = Color(0xFFFFF8F8)
 val DarkPink = Color(0xFFE91E63)
-=======
->>>>>>> Stashed changes
 
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)

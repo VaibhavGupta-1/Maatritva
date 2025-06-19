@@ -267,7 +267,7 @@ fun EmergencyContactScreenContent(
         }
         }
     }
-}
+
 
 
 @Composable
@@ -303,84 +303,87 @@ fun EmergencyContactItem(doctor: Doctor, onDelete: () -> Unit) {
             Spacer(Modifier.width(16.dp))
 
             Column {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = doctor.name,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black
-                )
-                Text(
-                    text = doctor.specialty,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
-                )
-                Text(
-                    text = doctor.phoneNumber,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End,
-                modifier = Modifier.padding(end = 8.dp)
-            ) {
-                IconButton(onClick = { /* TODO: Implement message action */ }) {
-                    Box(
-                        modifier = Modifier
-                            .size(35.dp)
-                            .clip(CircleShape)
-                            .background(Color.Red.copy(alpha = 0.8f)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Message,
-                            contentDescription = "Message",
-                            tint = Color.White,
-                            modifier = Modifier.size(20.dp)
-                        )
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = doctor.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = doctor.specialty,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Gray
+                    )
+                    Text(
+                        text = doctor.phoneNumber,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Black
+                    )
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.End,
+                    modifier = Modifier.padding(end = 8.dp)
+                ) {
+                    IconButton(onClick = { /* TODO: Implement message action */ }) {
+                        Box(
+                            modifier = Modifier
+                                .size(35.dp)
+                                .clip(CircleShape)
+                                .background(Color.Red.copy(alpha = 0.8f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Message,
+                                contentDescription = "Message",
+                                tint = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    }
+                    Spacer(Modifier.width(6.dp))
+                    IconButton(onClick = { /* TODO: Implement call action */ }) {
+                        Box(
+                            modifier = Modifier
+                                .size(35.dp)
+                                .clip(CircleShape)
+                                .background(Color.Red.copy(alpha = 0.8f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Call,
+                                contentDescription = "Call",
+                                tint = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    }
+                    Spacer(Modifier.width(6.dp))
+                    IconButton(onClick = onDelete) {
+                        Box(
+                            modifier = Modifier
+                                .size(35.dp)
+                                .clip(CircleShape)
+                                .background(Color.Red.copy(alpha = 0.8f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Delete",
+                                tint = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
                     }
                 }
-                Spacer(Modifier.width(6.dp))
-                IconButton(onClick = { /* TODO: Implement call action */ }) {
-                    Box(
-                        modifier = Modifier
-                            .size(35.dp)
-                            .clip(CircleShape)
-                            .background(Color.Red.copy(alpha = 0.8f)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Call,
-                            contentDescription = "Call",
-                            tint = Color.White,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-                Spacer(Modifier.width(6.dp))
-                IconButton(onClick = onDelete) {
-                    Box(
-                        modifier = Modifier
-                            .size(35.dp)
-                            .clip(CircleShape)
-                            .background(Color.Red.copy(alpha = 0.8f)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete",
-                            tint = Color.White,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
+
             }
         }
     }
 }
+
 
 
 @Composable
@@ -404,4 +407,5 @@ fun AppHeader(
         )
     }
 }
+
 

@@ -106,6 +106,12 @@ fun HomeScr(navController: NavHostController) {
                 }
             }
 
+            Text(
+                text = "Monthly Development",
+                modifier = Modifier.padding(12.dp),
+                fontSize = 25.sp,
+                color = Color(0xFFD33560) // Replace with your desired hex color
+            )
             // Weekly Development Cards - Horizontally Scrollable
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -134,7 +140,7 @@ fun HomeScr(navController: NavHostController) {
 
             // Upcoming Appointments Section
             UpcomingAppointmentsCard(
-                onClick = { /* Navigate to Appointments */ }
+                onClick = { navController.navigate("Appointments") }
             )
 
             Spacer(modifier = Modifier.height(24.dp))

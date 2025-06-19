@@ -15,13 +15,13 @@ sealed class OnboardingModel(
     )
 
     data object SecondPage : OnboardingModel(
-        image = R.drawable.logo,
-        title = "Your Personal Library"
+        image = R.drawable.mom,
+        title = "Every mother deserves the best care"
     )
 
     data object ThirdPages : OnboardingModel(
-        image = R.drawable.logo,
-        title = "Search and Filter"
+        image = R.drawable.doc,
+        title = "Nutrition's certified by doctors"
     )
 
 

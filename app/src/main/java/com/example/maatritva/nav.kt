@@ -4,20 +4,26 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.maatritva.ui.AppointmentCard
 import com.example.maatritva.ui.AppointmentScreen
 import com.example.maatritva.ui.Auth.AuthViewModel
 import com.example.maatritva.ui.Auth.HomePage
 import com.example.maatritva.ui.Auth.LoginPage
 import com.example.maatritva.ui.Auth.SignupPage
 import com.example.maatritva.ui.EmergencyContactRoute
+import com.example.maatritva.ui.homescreen.AppHeader
 import com.example.maatritva.ui.homescreen.HomeScr
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week1Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week2Screen
@@ -81,6 +87,7 @@ import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd6
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd7
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd8
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd9
+import com.example.maatritva.ui.pregscreen.Header
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.profile.ProfileScreen
 import com.example.maatritva.ui.profile.ProfileViewModel
@@ -202,9 +209,44 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("weekd40") { Weekd40(navController) }
 
 
-
+        composable("Appointments") { Appointments() }
     }
     )
+}
+
+@Composable
+fun Appointments() {
+    Column {
+        Header("Upcoming Appointments")
+        
+        Spacer(modifier = Modifier.height(20.dp))
+
+        AppointmentCard(
+            doctorName = "Dr. Alana Rueter",
+            specialty = "Dentist Consultation",
+            date = "Monday, 26 July",
+            time = "9:00 - 10:00",
+            isUpcoming = true,
+            onReschedule = { /* Handle reschedule */ },
+            onCancel = { /* Handle cancel */ },
+            onCall = { /* Handle call */ },
+            onMessage = { /* Handle message */ }
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        AppointmentCard(
+            doctorName = "Dr. Sarah Johnson",
+            specialty = "Gynecologist Checkup",
+            date = "Wednesday, 28 July",
+            time = "2:00 - 3:00",
+            isUpcoming = true,
+            onReschedule = { /* Handle reschedule */ },
+            onCancel = { /* Handle cancel */ },
+            onCall = { /* Handle call */ },
+            onMessage = { /* Handle message */ }
+        )
+    }
 }
 
 

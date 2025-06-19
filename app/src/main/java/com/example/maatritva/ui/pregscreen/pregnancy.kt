@@ -1,5 +1,6 @@
 package com.example.maatritva.ui.pregscreen
 
+import android.R.attr.textStyle
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Paint.Align
@@ -32,6 +33,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.room.*
+import com.example.maatritva.ui.AppHeader
 import com.example.maatritva.ui.theme.Red40
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -152,7 +154,7 @@ fun HomeScreen(navController: NavHostController) {
         )
     {
 
-        AppHeader("Your Pregnancy Tracker",)
+        Header("Your Pregnancy Tracker",)
         Spacer(Modifier.height(16.dp))
 
         DashboardCard("Due Date Calculator", "Check your expected delivery date", Icons.Default.DateRange, onClick =  {
@@ -233,7 +235,7 @@ fun DailyTipsScreen() {
         "Avoid alcohol, tobacco, caffeine, and undercooked foods.",
         "Sleep on your left side and use pillows for comfort.",
         "Maintain regular doctor appointments and checkups.",
-        "Talk openly about how you’re feeling emotionally.",
+        "Talk openly about how you're feeling emotionally.",
         "Keep a pregnancy journal to track milestones and thoughts.",
         "Attend all scans: NT (12 weeks), Anomaly (20 weeks), and Growth (3rd trimester).",
         "Pack your hospital bag by week 34 and discuss your birth plan.",
@@ -246,6 +248,8 @@ fun DailyTipsScreen() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+
+
         items(tipsList.size) { index ->
             Card(
                 modifier = Modifier
@@ -278,7 +282,7 @@ fun KickCounterScreen() {
     Column(
         modifier = Modifier.fillMaxSize().background(Color(0xFFF5F5F5))
     ) {
-        AppHeader("Kick Counter")
+        Header("Kick Counter")
         Spacer(Modifier.height(226.dp))
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -356,7 +360,7 @@ fun WeightTrackerScreen() {
     }
 
     Column(Modifier.fillMaxSize().background(Color(0xFFF5F5F5))) {
-        AppHeader("Weight Tracker")
+        Header("Weight Tracker")
         Spacer(Modifier.height(16.dp))
         Row(  modifier = Modifier
             .fillMaxWidth()
@@ -423,29 +427,56 @@ fun WeightTrackerScreen() {
 @Composable
 fun SymptomTrackerScreen() {
     val symptoms = listOf("Nausea", "Fatigue", "Headache", "Back pain", "Cravings")
-    val selected = remember { mutableStateMapOf<String, Boolean>() }
+    val diseaseMap = mapOf(
+        "Nausea" to "Morning sickness, dehydration, or gastrointestinal infection.",
+        "Fatigue" to "Anemia, thyroid issues, or sleep disturbances.",
+        "Headache" to "Migraine, dehydration, or high blood pressure.",
+        "Back pain" to "Muscle strain, poor posture, or kidney infection.",
+        "Cravings" to "Nutritional deficiency or hormonal changes."
+    )
+    var selectedSymptom by remember { mutableStateOf<String?>(null) }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Symptom Tracker", style = MaterialTheme.typography.headlineSmall)
+    Column(
+        Modifier
+            .fillMaxSize()
+            ,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Header("Symptom Tracker")
         Spacer(Modifier.height(16.dp))
         symptoms.forEach { symptom ->
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(
-                    checked = selected[symptom] == true,
-                    onCheckedChange = { selected[symptom] = it }
-                )
+            Button(
+                onClick = { selectedSymptom = symptom },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (selectedSymptom == symptom) Red40 else Color.LightGray,
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 6.dp)
+                    .padding(16.dp)
+            ) {
                 Text(symptom)
             }
+        }
+        Spacer(Modifier.height(32.dp))
+        selectedSymptom?.let { symptom ->
+            Text(
+                text = "Possible cause: ${diseaseMap[symptom]}",
+                color = Red40,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(top = 24.dp)
+            )
         }
     }
 }
 
 @Composable
-fun AppHeader(
+fun Header(
     text: String,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Red40,
-    textColor: Color = Color.White
+    textColor: Color = Color.White,
 ) {
     Box(
         modifier = modifier
@@ -454,10 +485,9 @@ fun AppHeader(
             .padding(top = 5.dp)
     ) {
         Text(
-            modifier = Modifier.padding(16.dp),
             text = text,
             color = textColor,
-            fontSize = 22.sp
+            modifier = Modifier.padding(16.dp)
         )
     }
 }

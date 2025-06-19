@@ -49,7 +49,6 @@ data class Doctor(
     val phoneNumber: String
 )
 
-// DAO
 @Dao
 interface DoctorDao {
     @Insert
@@ -65,7 +64,6 @@ interface DoctorDao {
     fun getAllDoctors(): kotlinx.coroutines.flow.Flow<List<Doctor>>
 }
 
-// Database
 @Database(entities = [Doctor::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun doctorDao(): DoctorDao
@@ -81,7 +79,6 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_database"
                 )
-                    // In a real app, you might want to add migrations or .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
@@ -90,7 +87,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-// Repository
 class DoctorRepository(private val doctorDao: DoctorDao) {
     val allDoctors: kotlinx.coroutines.flow.Flow<List<Doctor>> = doctorDao.getAllDoctors()
 
@@ -107,7 +103,6 @@ class DoctorRepository(private val doctorDao: DoctorDao) {
     }
 }
 
-// ViewModel
 class DoctorViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: DoctorRepository
     private val _doctors = MutableStateFlow<List<Doctor>>(emptyList())
@@ -137,7 +132,6 @@ class DoctorViewModel(application: Application) : AndroidViewModel(application) 
     }
 }
 
-// --- UI Components ---
 
 @Composable
 fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
@@ -155,10 +149,6 @@ fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
     )
 }
 
-/**
- * This is the stateless UI content part of the screen.
- * It takes data directly, making it easy to preview and test.
- */
 @Composable
 fun EmergencyContactScreenContent(
     doctors: List<Doctor>,
@@ -277,6 +267,7 @@ fun EmergencyContactScreenContent(
         }
         }
     }
+}
 
 
 @Composable
@@ -295,6 +286,23 @@ fun EmergencyContactItem(doctor: Doctor, onDelete: () -> Unit) {
                 .padding(horizontal = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            Box(
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(MediumPink),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.img),
+                    contentDescription = "Contact Image",
+                    tint = Color.Unspecified
+                )
+            }
+
+            Spacer(Modifier.width(16.dp))
+
+            Column {
             Column(
                 modifier = Modifier.weight(1f)
             ) {

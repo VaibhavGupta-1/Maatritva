@@ -29,6 +29,7 @@ import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week7Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week8Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week9Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week10Screen
+import com.example.maatritva.ui.map.Hospital
 import com.example.maatritva.ui.nutritions.MonthlyScreen
 import com.example.maatritva.ui.nutritions.weekly.WeeklyScreen1
 import com.example.maatritva.ui.nutritions.weekly.WeeklyScreen2
@@ -80,7 +81,6 @@ import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd6
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd7
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd8
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd9
-
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.profile.ProfileScreen
 import com.example.maatritva.ui.profile.ProfileViewModel
@@ -142,9 +142,9 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
             )
             ProfileScreen(viewModel = viewModel,navController)
         }
-        composable("Emergency Screen") {
-            EmergencyContactRoute()
+        composable("Emergency Screen") {EmergencyContactRoute()
         }
+        composable ("Hospital"){ Hospital() }
         composable("Monthly") {
             MonthlyScreen(navController)
         }

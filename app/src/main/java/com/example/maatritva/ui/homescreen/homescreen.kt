@@ -78,12 +78,12 @@ fun HomeScr(navController: NavHostController) {
                }
                 item{
                     FeatureCard(
-                        icon = Icons.Default.Favorite,
-                        title = "Health\nTips",
+                        icon = Icons.Default.LocationOn,
+                        title = "Nearby\nHospitals",
                         backgroundColor = Color(0xFFFFFFFF),
                         iconColor = Color(0xFF1976D2),
                         modifier = Modifier.weight(1f),
-                        onClick = { navController.navigate("Health tips") }
+                        onClick = { navController.navigate("Hospital") }
                     )
                 }
                 item { FeatureCard(

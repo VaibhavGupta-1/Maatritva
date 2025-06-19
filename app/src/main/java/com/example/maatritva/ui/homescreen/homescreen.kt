@@ -141,7 +141,7 @@ fun HomeScr(navController: NavHostController) {
 
             // Emergency Contact Button
             Button(
-                onClick = { /* Handle emergency contact */ },
+                onClick = { navController.navigate("Emergency Screen") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp).padding(horizontal = 10.dp),
@@ -276,7 +276,9 @@ fun HealthTipsCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
+            .clickable { onClick(
+
+            ) }
             .padding(horizontal = 10.dp)
         ,
         shape = RoundedCornerShape(16.dp),

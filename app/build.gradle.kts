@@ -103,5 +103,7 @@ plugins {
 
         implementation("com.google.ai.client.generativeai:generativeai:0.4.0")
 
+        implementation("io.coil-kt:coil-compose:2.7.0")
+
 
     }

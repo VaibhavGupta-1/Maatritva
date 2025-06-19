@@ -38,6 +38,7 @@ fun HomeScr(navController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(
                 selectedItem = selectedBottomItem,
+                navController = navController,
                 onItemSelected = { selectedBottomItem = it }
             )
         }
@@ -82,7 +83,7 @@ fun HomeScr(navController: NavHostController) {
                         backgroundColor = Color(0xFFFFFFFF),
                         iconColor = Color(0xFF1976D2),
                         modifier = Modifier.weight(1f),
-                        onClick = { /* Navigate to Health Tips */ }
+                        onClick = { navController.navigate("Health tips") }
                     )
                 }
                 item { FeatureCard(
@@ -388,8 +389,9 @@ fun UpcomingAppointmentsCard(
 @Composable
 fun BottomNavigationBar(
     selectedItem: Int,
+    navController: NavHostController,
     onItemSelected: (Int) -> Unit
-) {
+    ) {
     val items = listOf(
         BottomNavItem("Home", Icons.Default.Home),
         BottomNavItem("Resources", Icons.Default.Book),
@@ -416,7 +418,14 @@ fun BottomNavigationBar(
                     )
                 },
                 selected = selectedItem == index,
-                onClick = { onItemSelected(index) },
+                onClick = {
+                    onItemSelected(index)
+                    when (item.title) {
+                        "Home" -> navController.navigate("home src")
+                        "Resources" -> navController.navigate("resources")
+                        "Profile" -> navController.navigate("profile")
+                    }
+                },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color(0xFFD33560),
                     selectedTextColor = Color(0xFFD33560),

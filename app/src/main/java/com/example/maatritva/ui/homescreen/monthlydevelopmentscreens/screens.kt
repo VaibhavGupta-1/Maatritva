@@ -31,7 +31,7 @@ fun Week1Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 1: Conception",
+            text = "Month 0: Conception",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -118,7 +118,7 @@ fun Week2Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 1: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -128,7 +128,7 @@ fun Week2Screen() {
 
         Image(
             painter = painterResource(id = R.drawable.ma),
-            contentDescription = "Week 2 Development",
+            contentDescription = "Month 2 Development",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(250.dp)
@@ -205,7 +205,7 @@ fun Week3Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 2: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -241,10 +241,10 @@ fun Week3Screen() {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "• Embryo implants in uterine wall\n" +
-                            "• Placenta begins to form\n" +
-                            "• Amniotic sac develops\n" +
-                            "• Hormone production begins",
+                    text = "• The embryo develops a beating heart and starts forming major organs.\n" +
+                            "• Facial features like eyes, ears, and mouth begin to appear.\n" +
+                            "• Facial features like eyes, ears, and mouth begin to appear.\n" +
+                            "• Facial features like eyes, ears, and mouth begin to appear.",
                     style = MaterialTheme.typography.bodyLarge,
                     lineHeight = 24.sp
                 )
@@ -269,10 +269,10 @@ fun Week3Screen() {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "• Possible implantation bleeding\n" +
-                            "• Early pregnancy symptoms may begin\n" +
-                            "• Pregnancy tests may become positive\n" +
-                            "• Hormonal changes start",
+                    text = "• Breast tenderness and darkening of the areolas may occur." +
+                            "• You might experience frequent urination and mild cramping." +
+                            "• Mood swings and food aversions can begin to show." +
+                            "• Nausea and fatigue become more noticeable due to hormonal changes.",
                     style = MaterialTheme.typography.bodyLarge,
                     lineHeight = 24.sp
                 )
@@ -292,7 +292,7 @@ fun Week4Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 3: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -379,7 +379,7 @@ fun Week5Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 4: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -466,7 +466,7 @@ fun Week6Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 5: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -553,7 +553,7 @@ fun Week7Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 6: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -640,7 +640,7 @@ fun Week8Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 7: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -727,7 +727,7 @@ fun Week9Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 8: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold
@@ -814,7 +814,7 @@ fun Week10Screen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Week 2: Implantation",
+            text = "Month 9: Implantation",
             style = MaterialTheme.typography.headlineMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold

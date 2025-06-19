@@ -10,20 +10,18 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Message
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.AndroidViewModel
-//import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.room.*
@@ -35,6 +33,8 @@ import com.example.maatritva.ui.theme.White
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.sp
+import com.example.maatritva.ui.homescreen.AppHeader
+import com.example.maatritva.ui.theme.Red40
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -132,6 +132,7 @@ class DoctorViewModel(application: Application) : AndroidViewModel(application) 
     }
 }
 
+
 @Composable
 fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
     val doctors by doctorViewModel.doctors.collectAsState()
@@ -143,7 +144,8 @@ fun EmergencyContactRoute(doctorViewModel: DoctorViewModel = viewModel()) {
             }
         },
         onCallAction = { /* TODO: Implement actual call action via ViewModel or Intent */ },
-        onMessageAction = { /* TODO: Implement actual message action via ViewModel or Intent */ }
+        onMessageAction = { /* TODO: Implement actual message action via ViewModel or Intent */ },
+        onDeleteDoctor = { doctor -> doctorViewModel.delete(doctor) }
     )
 }
 
@@ -152,7 +154,8 @@ fun EmergencyContactScreenContent(
     doctors: List<Doctor>,
     onAddDoctor: (String, String, String) -> Unit,
     onCallAction: () -> Unit,
-    onMessageAction: () -> Unit
+    onMessageAction: () -> Unit,
+    onDeleteDoctor: (Doctor) -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var specialty by remember { mutableStateOf("") }
@@ -163,21 +166,19 @@ fun EmergencyContactScreenContent(
         modifier = Modifier
             .fillMaxSize()
             .background(White)
-            .padding(16.dp)
+//            .padding(16.dp)
+            .background(Color(0xFFF5F5F5))
     ) {
-        Text(
-            text = "Emergency Contacts",
-            style = MaterialTheme.typography.headlineSmall,
-            color = Color.Black,
-            modifier = Modifier.padding(vertical = 8.dp)
-        )
+        AppHeader("Emergengcy Contacts")
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp),
+                .padding(vertical = 8.dp)
+                .padding(16.dp)
+               ,
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-            colors = CardDefaults.cardColors(containerColor = LightBlue.copy(alpha = 0.15f))
+            colors = CardDefaults.cardColors(containerColor = White)
         ) {
             Column(
                 modifier = Modifier.padding(16.dp)
@@ -241,12 +242,12 @@ fun EmergencyContactScreenContent(
                 }
             }
         }
-        Divider(modifier = Modifier.padding(vertical = 12.dp), thickness = 1.dp, color = MediumPink.copy(alpha = 0.3f))
+        Divider(modifier = Modifier, thickness = 1.dp, color = MediumPink.copy(alpha = 0.3f))
         Text(
             text = "Saved Doctors",
             style = MaterialTheme.typography.titleLarge,
             color = Color.Black,
-            modifier = Modifier.padding(bottom = 8.dp)
+            modifier = Modifier.padding(bottom = 8.dp).padding(16.dp)
         )
         if (doctors.isEmpty()) {
             Box(
@@ -260,29 +261,29 @@ fun EmergencyContactScreenContent(
                 modifier = Modifier.weight(1f, fill = false)
             ) {
                 items(doctors) { doctor ->
-                    EmergencyContactItem(doctor = doctor)
+                    EmergencyContactItem(doctor = doctor, onDelete = { onDeleteDoctor(doctor) })
                 }
             }
+        }
         }
     }
 }
 
 
-
 @Composable
-fun EmergencyContactItem(doctor: Doctor) {
+fun EmergencyContactItem(doctor: Doctor, onDelete: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = White)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -302,6 +303,9 @@ fun EmergencyContactItem(doctor: Doctor) {
             Spacer(Modifier.width(16.dp))
 
             Column {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
                     text = doctor.name,
                     style = MaterialTheme.typography.titleMedium,
@@ -318,37 +322,86 @@ fun EmergencyContactItem(doctor: Doctor) {
                     color = Color.Black
                 )
             }
-            Spacer(Modifier.width(86.dp))
-            Box(
-                modifier = Modifier
-                    .size(35.dp)
-                    .clip(CircleShape)
-                    .background(Color.Red.copy(alpha = 0.8f)),
-                contentAlignment = Alignment.Center
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.padding(end = 8.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Message,
-                    contentDescription = "Message",
-                    tint = Color.White,
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-            Spacer(Modifier.width(6.dp))
-            Box(
-                modifier = Modifier
-                    .size(35.dp)
-                    .clip(CircleShape)
-                    .background(Color.Red.copy(alpha = 0.8f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Call,
-                    contentDescription = "Call",
-                    tint = Color.White,
-                    modifier = Modifier.size(20.dp)
-                )
+                IconButton(onClick = { /* TODO: Implement message action */ }) {
+                    Box(
+                        modifier = Modifier
+                            .size(35.dp)
+                            .clip(CircleShape)
+                            .background(Color.Red.copy(alpha = 0.8f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Message,
+                            contentDescription = "Message",
+                            tint = Color.White,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+                Spacer(Modifier.width(6.dp))
+                IconButton(onClick = { /* TODO: Implement call action */ }) {
+                    Box(
+                        modifier = Modifier
+                            .size(35.dp)
+                            .clip(CircleShape)
+                            .background(Color.Red.copy(alpha = 0.8f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Call,
+                            contentDescription = "Call",
+                            tint = Color.White,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+                Spacer(Modifier.width(6.dp))
+                IconButton(onClick = onDelete) {
+                    Box(
+                        modifier = Modifier
+                            .size(35.dp)
+                            .clip(CircleShape)
+                            .background(Color.Red.copy(alpha = 0.8f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Delete",
+                            tint = Color.White,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
             }
         }
+    }
+}
+
+
+@Composable
+fun AppHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = Red40,
+    textColor: Color = Color.White
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(backgroundColor)
+            .padding(top = 30.dp)
+    ) {
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = text,
+            color = textColor,
+            fontSize = 22.sp
+        )
     }
 }
 

@@ -396,7 +396,7 @@ fun BottomNavigationBar(
     ) {
     val items = listOf(
         BottomNavItem("Home", Icons.Default.Home),
-        BottomNavItem("Resources", Icons.Default.Book),
+        BottomNavItem("Nutrition", Icons.Default.FoodBank),
         BottomNavItem("Profile", Icons.Default.Person)
     )
 
@@ -424,7 +424,7 @@ fun BottomNavigationBar(
                     onItemSelected(index)
                     when (item.title) {
                         "Home" -> navController.navigate("home src")
-                        "Resources" -> navController.navigate("resources")
+                        "Nutrition" -> navController.navigate("Monthly")
                         "Profile" -> navController.navigate("profile")
                     }
                 },

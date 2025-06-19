@@ -27,7 +27,8 @@ fun Week1Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -114,7 +115,8 @@ fun Week2Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -201,7 +203,8 @@ fun Week3Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -288,7 +291,8 @@ fun Week4Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -375,7 +379,8 @@ fun Week5Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -462,7 +467,8 @@ fun Week6Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -549,7 +555,8 @@ fun Week7Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -636,7 +643,8 @@ fun Week8Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -723,7 +731,8 @@ fun Week9Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -810,7 +819,8 @@ fun Week10Screen() {
             .fillMaxSize()
             .background(Red40)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .padding(top= 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(

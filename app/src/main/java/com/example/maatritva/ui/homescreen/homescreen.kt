@@ -133,7 +133,7 @@ fun HomeScr(navController: NavHostController) {
 
             // Health Tips Section
             HealthTipsCard(
-                onClick = { navController.navigate("tips") }
+                onClick = {navController.navigate("tips") }
             )
 
             Spacer(modifier = Modifier.height(16.dp))

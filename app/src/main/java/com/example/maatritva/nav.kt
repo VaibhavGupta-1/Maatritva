@@ -213,6 +213,8 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("Appointments") { Appointments() }
 
         composable("tips") { DailyTipsScreen() }
+
+
     }
     )
 }

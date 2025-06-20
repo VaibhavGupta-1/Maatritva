@@ -367,16 +367,3 @@ fun EmergencyContactItem(doctor: Doctor, onDelete: () -> Unit) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

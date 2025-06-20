@@ -177,7 +177,7 @@ fun AppHeader() {
     ) {
         Text(
             modifier = Modifier.padding(16.dp),
-            text = "Queries AI",
+            text = "Maatritva AI",
             color = Color.White,
             fontSize = 22.sp
         )

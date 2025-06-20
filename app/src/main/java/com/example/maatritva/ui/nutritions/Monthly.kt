@@ -22,9 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.maatritva.ui.pregscreen.Header
 import com.example.maatritva.ui.theme.Red40
-import androidx.compose.material3.Scaffold
-import com.example.maatritva.ui.AppHeader
 
 @Composable
 fun MonthlyScreen(navController: NavHostController) {
@@ -47,7 +46,7 @@ fun MonthlyScreen(navController: NavHostController) {
                 .background(Color(0xFFF5F5F5))
                 .padding(paddingValues)
         ) {
-            AppHeader("MonthWise Nutrition")
+            Header("MonthWise Nutrition")
             // First row: Month 1, 2, 3
             Spacer(Modifier.height(25.dp))
             Row(

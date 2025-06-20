@@ -218,7 +218,7 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
 fun Appointments() {
     Column {
         Header("Upcoming Appointments")
-        
+
         Spacer(modifier = Modifier.height(20.dp))
 
         AppointmentCard(

@@ -33,7 +33,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.room.*
-import com.example.maatritva.ui.AppHeader
 import com.example.maatritva.ui.theme.Red40
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -482,7 +481,7 @@ fun Header(
         modifier = modifier
             .fillMaxWidth()
             .background(backgroundColor)
-            .padding(top = 5.dp)
+            .padding(top = 30.dp)
     ) {
         Text(
             text = text,

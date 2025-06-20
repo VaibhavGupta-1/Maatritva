@@ -169,7 +169,7 @@ fun EmergencyContactScreenContent(
 //            .padding(16.dp)
             .background(Color(0xFFF5F5F5))
     ) {
-        AppHeader("Emergengcy Contacts")
+        AppHeader2("Emergency Contacts")
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -265,9 +265,13 @@ fun EmergencyContactScreenContent(
                 }
             }
         }
-        }
     }
 
+
+@Composable
+fun AppHeader2(x0: String) {
+    TODO("Not yet implemented")
+}
 
 
 @Composable
@@ -387,7 +391,7 @@ fun EmergencyContactItem(doctor: Doctor, onDelete: () -> Unit) {
 
 
 @Composable
-fun AppHeader(
+fun AppHeader2(
     text: String,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Red40,
@@ -406,6 +410,6 @@ fun AppHeader(
             fontSize = 22.sp
         )
     }
-}
+}}
 
 

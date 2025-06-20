@@ -87,6 +87,7 @@ import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd6
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd7
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd8
 import com.example.maatritva.ui.nutritions.weekly.weekdetails.Weekd9
+import com.example.maatritva.ui.pregscreen.DailyTipsScreen
 import com.example.maatritva.ui.pregscreen.Header
 import com.example.maatritva.ui.pregscreen.PregnancyTrackerApp
 import com.example.maatritva.ui.profile.ProfileScreen
@@ -210,6 +211,8 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
 
 
         composable("Appointments") { Appointments() }
+
+        composable("tips") { DailyTipsScreen() }
     }
     )
 }

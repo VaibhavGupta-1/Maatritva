@@ -209,14 +209,16 @@ fun DueDateCalculatorScreen() {
         }
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Enter Last Menstrual Period (yyyy-MM-dd)", style = MaterialTheme.typography.titleMedium)
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Header("Enter Last Menstrual Period (yyyy-MM-dd)")
+//        Text("Enter Last Menstrual Period (yyyy-MM-dd)", style = MaterialTheme.typography.titleMedium)
         Spacer(Modifier.height(8.dp))
         OutlinedTextField(
             value = lmpDate,
             onValueChange = { lmpDate = it },
             label = { Text("LMP Date") },
-            placeholder = { Text("yyyy-MM-dd") }
+            placeholder = { Text("yyyy-MM-dd") }, modifier = Modifier.padding(16.dp)
         )
         Spacer(Modifier.height(16.dp))
         Text("Estimated Due Date: $dueDate", style = MaterialTheme.typography.bodyLarge)
@@ -241,10 +243,15 @@ fun DailyTipsScreen() {
         "Eat a balanced diet rich in iron, calcium, and protein.",
 
     )
+Column {
+    Header("Advices")
+    Spacer(Modifier.height(10.dp))
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
+//            .fillMaxSize()
+            .fillMaxHeight()
+            .height(150.dp)
             .padding(16.dp)
     ) {
 
@@ -263,6 +270,7 @@ fun DailyTipsScreen() {
             }
         }
     }
+}
 }
 
 

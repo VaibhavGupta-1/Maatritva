@@ -50,5 +50,4 @@ Project is created with:
 ---
 
 ## Screenshot
-> 📸 Add screenshots here using `![alt-text](link)` or drag & drop images into your GitHub README editor.
 

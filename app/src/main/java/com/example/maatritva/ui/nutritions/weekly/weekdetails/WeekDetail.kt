@@ -24,45 +24,45 @@ import com.example.maatritva.ui.theme.Red40
 @Composable
 fun Weekd1(navController: NavController) {
     WeekScreen(navController, "Week 1",
-        "Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
+        " \u2022 Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
                 "\n" +
-                "Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
+                "\u2022 Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
                 "\n" +
-                "Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
+                "\u2022 Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
                 "\n" +
-                "Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
+                "\u2022 Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
                 "\n" +
-                "Zinc supports early cell division and healthy embryo formation.\n"
+                "\u2022 Zinc supports early cell division and healthy embryo formation.\n"
         )
 }
 
 @Composable
 fun Weekd2(navController: NavController) {
     WeekScreen(
-        navController, "Week 2",  "Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
+        navController, "Week 2",  "\u2022 Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
                 "\n" +
-                "Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
+                "\u2022 Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
                 "\n" +
-                "Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
+                "\u2022 Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
                 "\n" +
-                "Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
+                "\u2022 Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
                 "\n" +
-                "Zinc supports early cell division and healthy embryo formation.\n"
+                "\u2022 Zinc supports early cell division and healthy embryo formation.\n"
     )
 }
 
 @Composable
 fun Weekd3(navController: NavController) {
     WeekScreen(
-        navController, "Week 3",  "Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
+        navController, "Week 3",  "\u2022 Folic acid is crucial in the early weeks to support the neural tube's development and prevent birth defects.\n" +
                 "\n" +
-                "Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
+                "\u2022 Iron helps build red blood cells and supports the increased blood volume required for pregnancy.\n" +
                 "\n" +
-                "Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
+                "\u2022 Staying hydrated ensures optimal blood flow and helps the embryo implant securely in the uterus.\n" +
                 "\n" +
-                "Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
+                "\u2022Vitamin C enhances immunity and also aids in the absorption of dietary iron, which is vital in early pregnancy.\n" +
                 "\n" +
-                "Zinc supports early cell division and healthy embryo formation.\n"
+                "\u2022 Zinc supports early cell division and healthy embryo formation.\n"
     )
 }
 

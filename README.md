@@ -10,7 +10,7 @@
 ## General Info
 **Maatritva** is a comprehensive maternal care Android application built using **Jetpack Compose**. It is designed to assist pregnant women through their journey by offering personalized tracking tools, AI support, and location-based services. The app ensures a user-friendly experience by following **MVVM architecture** and using modern Android development best practices.
 
-> 🏆 Top 10 finalist out of 700+ teams at **Kalam Pragati Hackathon**
+> 🏆 Top 5 finalist out of 700+ teams at **Kalam Pragati Hackathon**
 
 ---
 

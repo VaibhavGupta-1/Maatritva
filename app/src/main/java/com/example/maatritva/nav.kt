@@ -19,11 +19,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.maatritva.ui.AppointmentCard
 import com.example.maatritva.ui.AppointmentScreen
 import com.example.maatritva.ui.Auth.AuthViewModel
-import com.example.maatritva.ui.Auth.HomePage
 import com.example.maatritva.ui.Auth.LoginPage
 import com.example.maatritva.ui.Auth.SignupPage
 import com.example.maatritva.ui.EmergencyContactRoute
-import com.example.maatritva.ui.homescreen.AppHeader
 import com.example.maatritva.ui.homescreen.HomeScr
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week1Screen
 import com.example.maatritva.ui.homescreen.monthlydevelopmentscreens.Week2Screen
@@ -108,9 +106,7 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         composable("signup"){
             SignupPage(modifier,navController,authViewModel)
         }
-        composable("home1"){
-            HomePage(modifier,navController,authViewModel)
-        }
+
 
         composable("home src"){
             HomeScr(
